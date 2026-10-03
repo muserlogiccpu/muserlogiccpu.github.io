@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>muser's typewriter api</title>
+    </head>
+    <body>
+        <h1>muser's typewriter api</h1>
+        <p>to make your typewriter work with muser's typewriter api, change the url to <b>https://test.developmentmuser.workers.dev/ping</b>.</p>
+        <div id="update">
+        	<span>update</span><br>
+        	<label for="text">text to update (must be less than 256 chars)</label><br>
+        	<input type="text" id="text" name="text" placeholder="not blapi!"><br>
+        	<label for="sid">sid (must be numeric)</label><br>
+        	<input type="number" id="sid" name="sid" placeholder="1000"><br>
+        	<button id="submit">update</button>
+        	<script>
+  				const s = document.getElementById('submit');
+  				s.addEventListener('click', async () => {
+  					let text = document.getElementById('text');
+    				let sid = document.getElementById('sid');
+    				let sid2 = sid.value;
+    				let text2 = text.value;
+    				if (!text2) {
+    					text2 = "";
+    				}
+					if (!sid2) {
+    					sid2 = 1000;
+    				}
+    				try {
+						s.disabled = true;
+						s.textContent = 'wait...';
+						const r = await fetch('https://test.developmentmuser.workers.dev/update', {
+							method: 'POST',
+							headers: {
+					        	'X-Session-ID': sid2
+					        },
+					        body: text2
+						});
+					    if (r.ok) {
+					    	alert('success');
+						    text.value = '';
+					        sid.value = '';
+					    } else {
+					        alert('err, ' + response.status);
+					    }
+					} catch (error) {
+				      alert('internet kaput');
+				      console.error(error);
+				    } finally {
+				      s.disabled = false;
+				      s.textContent = 'update';
+				    }
+				});
+			</script>
+        </div>
+    </body>
+</html>
