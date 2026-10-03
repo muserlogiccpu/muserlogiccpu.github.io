@@ -12,7 +12,7 @@
 			<p>intens's blapi has recently <b>been getting ddosed by a guy</b>, and the blapi <b>went completely down as of oct 3, 2026</b>. this is an implementation actually from <b>feburary 2026</b>, modified in october to be better.</b></p>
 		</details>
         <p>to make your typewriter work with muser's typewriter api, change the url to <b>https://test.developmentmuser.workers.dev/ping</b>.<br>
-		PSA: <s>seems like my pythonanywhere has been ddosed so it gets rate limited.</s> my cloudflare worker has been " temporarily " rate limited 👏👏👏👏👏👏
+		<s>PSA: seems like my pythonanywhere has been ddosed so it gets rate limited. my cloudflare worker has been " temporarily " rate limited 👏👏👏👏👏👏</s> i've fixed the issue by not using the reverse proxy.
 		<pre><code>
 			
 Traffic:
@@ -49,13 +49,12 @@ Hour (previous hour) 	0 	(675792)
     				try {
 						s.disabled = true;
 						s.textContent = 'wait...';
-						const headers = {}
+						let u = '';
 						if (siduse.checked) {
-							headers['X-Session-ID'] = sid2;
+							u = `?sid=${sid}`
 						}
-						const r = await fetch('https://test.developmentmuser.workers.dev/update', {
+						const r = await fetch(`https://test.developmentmuser.workers.dev/update${u}`, {
 							method: 'POST',
-							headers: headers,
 					        body: text2
 						});
 					    if (r.ok) {
