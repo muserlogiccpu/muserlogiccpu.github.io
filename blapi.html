@@ -51,7 +51,7 @@ Hour (previous hour) 	0 	(675792)
 						s.textContent = 'wait...';
 						let u = '';
 						if (siduse.checked) {
-							u = `?sid=${sid}`
+							u = `?sid=${sid2}`
 						}
 						const r = await fetch(`https://muserlogiccpu.pythonanywhere.com/update${u}`, {
 							method: 'POST',
