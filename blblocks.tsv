@@ -1,0 +1,191 @@
+BlockID	BlockName
+A	TorchWATT_Down
+B	SignWATT_Down
+C	SignWATT
+D	TorchWATT
+E	Day Controller
+F	_Legacy Kill Module
+G	Block
+H	Stair
+I	Ladder
+J	Torch
+K	Invisible Block
+L	Slab
+M	Inner Stair
+N	Outer Stair
+O	Color Neon Light 2
+P	Full Subtractor
+Q	Plate
+R	Piston
+S	4 Bit Register
+T	Dip Switches
+U	8x8 RGB2 Panel
+V	Interval Calculator
+W	8 Bit Splitter
+X	EEPROM
+Y	LED
+Z	8 Bit AND Gate
+a	Barrier Block
+b	NAND Gate
+c	NOR Gate
+d	NOT Gate
+e	OR Gate
+f	Splitter
+g	XNOR Gate
+h	Counter
+i	8 Bit Shifter Counter
+j	Number Counter
+k	Color No Light
+l	Gated SR Latch
+m	Full Adder
+n	SR Latch
+o	Toggle Output
+p	Delay
+q	Timer
+r	Wifi
+s	Button
+t	Sign
+u	Lever
+v	Toggle Button
+w	Instant Button
+x	HEX Color Display
+y	HEX Squared Color Display
+z	RGB Light
+`	8 Bit NOR Gate
+1	AND Gate
+2	XOR Gate
+3	Randomizer
+4	HEX LCD Display
+5	HEX Pixel Color Display
+6	Barrier
+7	Read Output
+8	Color Neon Light
+9	Green Screen
+0	Color Light
+!	8 Bit OR Gate
+@	8 Bit XOR Gate
+&	8 Bit NAND Gate
+*	8 Bit XNOR Gate
+(	Text Button
+)	Command Block
+-	2 Bit Multiplier
+_	RGB2 Light Panel
++	Door
+=	Electric Door
+[	Sticky Piston
+{	Empty Block
+]	TNT
+}	RGB2 Light
+|	Block Placer
+:	Pane
+'	Player Detector
+"	Kill Module
+,	Chair
+<	HEX Color Display 2
+.	4 Bit Shifter Counter
+>	Text Panel
+/	Corner Pane
+?	Erreur
+#A	Complex Counter
+#B	NUCLEAR TNT
+#C	Phosphor Light
+#D	Trap Door
+#E	Electric Trap Door
+#F	RGB Neon Light
+#G	RGB2 Neon Light
+#H	Inverted Double Dabble Chip
+#I	Triangular Stair
+#K	Sticky Block
+#L	8 Bit Multiplier
+#M	16 Bit Multiplier
+#N	8 Bit Divider
+#O	16 Bit Divider
+#P	Obsidian
+#Q	Air Block
+#R	_Legacy Player Detector
+#S	Quick NOT
+#T	Reinforced Block
+#U	Clay Block
+#V	Color Detector
+#W	8 Bit Adder
+#X	16 Bit Adder
+#Y	D Flip
+#Z	Mini HEX Color Display
+#a	D Flip Flop
+#b	Beam 1x4
+#c	Beam 1x7
+#d	16 Bit EEPROM
+#e	Double Dabble Chip
+#f	Laser
+#g	Laser Detector
+#h	Transmitter
+#i	D Latch
+#j	T Flip Flop
+#k	4 Sides Pole 2
+#l	Color Light Panel
+#m	Corner Pole
+#n	Pole
+#o	T Pole
+#p	3 Sides Pole
+#q	RGB Light Panel
+#r	Buzzer
+#s	Spawn
+#t	EMERGENCY
+#u	Speaker
+#v	Teleport Module A
+#w	Teleport Module B
+#x	Pressure Plate
+#y	Don't Press Button
+#z	Plate Button
+#`	Loki Spawner
+#1	4 Sides Pole
+#2	5 Sides Pole
+#3	6 Sides Pole
+#4	4 LEDs
+#5	TNT Activator
+#6	4 Bit Comparator
+#7	8 Bit Register
+#8	16x16 RGB2 Panel
+#9	4 RGB Light Panels
+#0	Buffer
+#!	HTTP Transmitter
+#@	_Legacy Keypad
+#$	8 Bit 8:1 Mux
+#^	Illegal Piston
+#&	Keypad
+#*	1 Bit 1:16 Demux
+#(	Slab Chair
+#)	Firework Module
+#-	Solid Chair
+#_	8 Bit 2:1 Mux
+#=	1 Bit 1:8 Demux
+#+	4 Bit 4:1 Mux
+#[	16 Bit Shifter Counter
+#{	Sign 1x2WATT
+#]	Sign 1x2
+#}	Sign 1x2WATT_Down
+#|	Stair Chair
+#:	Illegal Sticky Piston
+#,	4 Bit Wifi
+#<	4 Bit 16:1 Mux
+#/	Perfect TNT
+# 	Cake
+%b	8 Bit Synchronous Randomizer
+%c	Precise Synchronous Randomizer
+%d	Complex Number Counter
+%f	Slab Spawn
+%g	Checkpoint
+%h	Slab Checkpoint
+%i	Spotlight
+%j	RGB2 Phosphor Light
+%k	8 Bit Shift Register
+%l	Synchronous Randomizer
+%m	Precise Randomizer
+%1	Loaded Gate
+%2	Light Button
+%0	Controllable Color Display
+\x02	Beam 1x2
+\x03	Beam 1x3
+\x04	Beam 1x5
+\x05	Beam 1x6
+\x06	Beam 1x8
