@@ -9,7 +9,7 @@
         <h1>muser's typewriter api</h1>
 		<details>
 			<summary>why not intens's blapi?</summary>
-			<p>intens's blapi has recently <b>been getting ddosed by a guy</b>, and the blapi <b>went completely down as of oct 3, 2026</b>. this is an implementation actually from <b>feburary 2026</b>, modified in october to be better.</b></p>
+			<p>intens's blapi has recently <b>been getting ddosed by a random ass guy</b>, and the blapi <b>went completely down as of oct 3, 2026</b>. this is an implementation that is compatible with <m>muser's typewriters</m> since at least <b>feburary 2026</b>, though it was upgraded.</b></p>
 		</details>
         <p>to make your typewriter work with muser's typewriter api, change the url to <b>https://muserlogiccpu.pythonanywhere.com/ping</b>.<br>
 		<s>PSA: seems like my pythonanywhere has been ddosed so it gets rate limited. my cloudflare worker has been " temporarily " rate limited 👏👏👏👏👏👏</s> i've fixed the issue by not using the reverse proxy.
@@ -27,17 +27,29 @@ Hour (previous hour) 	0 	(675792)
         	<span>update</span><br>
         	<label for="text">text to update (must be less than 256 chars)</label><br>
         	<input type="text" id="text" name="text" placeholder="not blapi!"><br>
-        	<label for="sid">sid (must be numeric)</label><br>
-        	<input type="number" id="sid" name="sid" placeholder="1000"><br>
-			<input type="checkbox" id="usesid" name="usesid" value="usesid">
+        	<label class="sid" for="sid">sid (must be numeric)</label><br>
+        	<input class="sid" type="number" id="sid" name="sid" placeholder="1000"><br>
+			<input type="checkbox" id="usesid" name="usesid" value="usesid" checked>
 			<label for="usesid">Use sID (Post-oct 2nd 2026)</label><br>
         	<button id="submit">update</button>
         	<script>
   				const s = document.getElementById('submit');
+				const siduse = document.getElementById('usesid');
+				const sids = document.querySelectorAll('.sid');
+				siduse.addEventListener('change', function() {
+					if (this.checked) {
+					    sids.forEach(s => {
+						  s.style.display = 'block';
+						});
+					  } else {
+					    sids.forEach(s => {
+						  s.style.display = 'none';
+						});
+					  }
+				});
   				s.addEventListener('click', async () => {
   					let text = document.getElementById('text');
     				let sid = document.getElementById('sid');
-					let siduse = document.getElementById('usesid');
     				let sid2 = sid.value;
     				let text2 = text.value;
     				if (!text2) {
