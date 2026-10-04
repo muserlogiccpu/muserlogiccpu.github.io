@@ -27,8 +27,10 @@ Hour (previous hour) 	0 	(675792)
         	<span>update</span><br>
         	<label for="text">text to update (must be less than 256 chars)</label><br>
         	<input type="text" id="text" name="text" placeholder="not blapi!"><br>
-        	<label class="sid" for="sid">sid (must be numeric)</label><br>
-        	<input class="sid" type="number" id="sid" name="sid" placeholder="1000"><br>
+        	<div class="sid">
+				<label for="sid">sid (must be numeric)</label><br>
+        	<input type="number" id="sid" name="sid" placeholder="1000"><br>
+			</div>
 			<input type="checkbox" id="usesid" name="usesid" value="usesid" checked>
 			<label for="usesid">Use sID (Post-oct 2nd 2026)</label><br>
         	<button id="submit">update</button>
