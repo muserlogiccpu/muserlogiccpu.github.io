@@ -12,7 +12,7 @@
 			<summary>why not intens's blapi?</summary>
 			<p>intens's blapi has recently <b>been getting ddosed by a random ass guy</b>, and the blapi <b>went completely down as of oct 3, 2026</b>. this is an implementation that is compatible with <i>muser's typewriters</i> since at least <b>feburary 2026</b>, though it was upgraded.</b></p>
 		</details>
-        <p>to make your typewriter work with muser's typewriter api, change the url to <b>https://muserlogiccpu.pythonanywhere.com/ping</b>. (and do more shit to modify the typewritah to NOT USE THE LAST BIT FOR SOME SHIT THAT NOBODY GIVES A FUCK UPON)<br>
+        <p>to make your typewriter work with muser's typewriter api, change the url to <b>https://muserlogiccpu.pythonanywhere.com/ping</b>. (or use a mirror, <b>https://tw-svv6.onrender.com/ping</b>, and do more shit to modify the typewritah to NOT USE THE LAST BIT FOR SOME SHIT THAT NOBODY GIVES A FUCK UPON)<br>
 		<s>PSA: seems like my pythonanywhere has been ddosed so it gets rate limited. my cloudflare worker has been " temporarily " rate limited 👏👏👏👏👏👏</s> i've fixed the issue by not using the reverse proxy.</p>
         <div id="update">
         	<span>update</span><br>
@@ -24,10 +24,13 @@
 			</div>
 			<input type="checkbox" id="usesid" name="usesid" value="usesid" checked>
 			<label for="usesid">use sID (post-Oct 2nd 2026)</label><br>
+			<input type="checkbox" id="usemirror" name="usemirror" value="usemirror">
+			<label for="usemirror">use mirror (hosted on Render)</label><br>
         	<button id="submit">update</button>
         	<script>
   				const s = document.getElementById('submit');
 				const siduse = document.getElementById('usesid');
+				const mir = document.getElementById('usemirror');
 				const sids = document.querySelectorAll('.sid');
 				siduse.addEventListener('change', function() {
 					if (this.checked) {
@@ -58,7 +61,11 @@
 						if (siduse.checked) {
 							u = `?sid=${sid2}`
 						}
-						const r = await fetch(`https://muserlogiccpu.pythonanywhere.com/update${u}`, {
+						let dom = 'muserlogiccpu.pythonanywhere.com';
+						if (mir.checked) {
+							dom = 'tw-svv6.onrender.com';
+						}
+						const r = await fetch(`https://${dom}/update${u}`, {
 							method: 'POST',
 					        body: text2
 						});
