@@ -1,0 +1,121 @@
+	<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>decoder</title>
+		<link rel="stylesheet" href="css.css" />
+    </head>
+    <body>
+        <h1>decoder</h1>
+        <p>to decode, go to the debug menu (first turn it on with /m l) then copy the value data and paste it here.</p>
+        <p>select a block</p>
+        <select name="type" id="type">
+            <option value="speaker" selected>speaker</option>
+            <option value="legacykeypad">_legacy keypad</option>
+            <option value="keypad">keypad</option>
+        </select>
+        <br>
+        <label for="data">data to decode</label><br>
+        <input type="text" id="data" name="data"><br>
+        <button id="decode">decode</button>
+        <div id="output">
+            <span>output</span>
+            <pre><code id="code"></code></pre>
+        </div>
+        <script>
+            const o = document.getElementById('code');
+            const s = document.getElementById('type');
+            const d = document.getElementById('decode');
+            const D = document.getElementById('data');
+            const u = D.value;
+            d.addEventListener('click', async () => {
+function pc(str, d, c) {
+  let r = [];
+  let p = 0;
+  for (let i = 0; i < c; i++) {
+    if (p >= str.length) {
+      r.push(d[i]);
+      continue;
+    }
+    let c = str.charCodeAt(p);
+    let l = NaN;
+    if (c >= 48 && c <= 57) l = c - 48;
+    else if (c >= 97 && c <= 106) l = c - 87;
+    if (isNaN(l)) {
+      r.push(d[i]);
+      break;
+    }
+    let L = l + 1;
+    let v = p + 1;
+    let V = v + L;
+    if (V > str.length) {
+      r.push(d[i]);
+      break;
+    }
+    r.push(str.slice(v, V));
+    p = V;
+  }
+  while (r.length < c) {
+    r.push(d[r.length]);
+  }
+  return r;
+}
+if (s.value === "speaker") {
+  let b = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@\$%?&<()";
+  function b71(id) {
+    let nid = id.trim();
+    let d = 0n;
+    let p = 0n;
+    for (let c of [...nid].reverse()) {
+      let D = b.indexOf(c);
+      if (D === -1) {
+        throw new Error(`invalid char ${c}`);
+      }
+      d += BigInt(D) * (71n ** p);
+      p += 1n;
+    }
+    return d;
+  }
+  let dv = ["1", "lolCv", "0.5", "1"];
+  let a = pc(u, dv, 4);
+  let id = b71(a[1]);
+  let l = a[0] !== "0";
+  o.innerHTML = "<b>Looped: </b>" + l + "<br><b>ID: </b>" + id + "<br><b>Volume: </b>" + a[2] + "<br><b>Pitch: </b>" + a[3];
+} else if (s.value === "legacykeypad") { 
+  let dv = ["1", "2", "1234", "1", "0.05"];
+  let a = pc(u, dv, 5);
+  let uoe = a[0] !== "0";
+  let skp = a[3] !== "0";
+  o.innerHTML = "<b>Unlock on Enter Key: </b>" + uoe + "<br><b>Unlocked Time: </b>" + a[1] + "<br><b>Code Digits: </b>" + a[2] + "<br><b>Show Key Press: </b>" + skp + "<br><b>Button Hold Time: </b>" + a[4];
+} else if (s.value === "keypad") { 
+    let b = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@\$%?&<()";
+  function b71(id) {
+    let nid = id.trim();
+    let d = 0n; let p = 0n;
+    for (let c of [...nid].reverse()) {
+      let D = b.indexOf(c);
+      if (D === -1) return "0";
+      d += BigInt(D) * (71n ** p); p += 1n;
+    }
+    return String(d);
+  }
+  let dv = ["1", "2", "2gg", "1", "0.05"];
+  let a = pc(u, dv, 5);
+  let uoe = a[0] !== "0";
+  let skp = a[3] !== "0";
+  let scd = a[2].split(":");
+  let dcd = [];
+  for (let i = 0; i < scd.length; i++) {
+    if (!scd[i]) continue;
+    let dv = b71(scd[i]);
+    dcd.push(dv.substring(1, dv.length));
+  }
+  if(dcd.length === 0) dcd.push("1234");
+  const ef = dcd.join("");
+  o.innerHTML = "<b>Unlock on Enter Key: </b>" + uoe + "<br><b>Unlocked Time: </b>" + a[1] + "<br><b>Code Digits: </b>" + ef + "<br><b>Show Key Press: </b>" + skp + "<br><b>Button Hold Time: </b>" + a[4];
+}
+            });
+</script>
+</body>
+</html>
