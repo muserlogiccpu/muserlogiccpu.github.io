@@ -26,12 +26,22 @@
 			<label for="usesid">use sID (post-Oct 2nd 2026)</label><br>
 			<input type="checkbox" id="usemirror" name="usemirror" value="usemirror">
 			<label for="usemirror">use mirror (hosted on Render)</label><br>
+			<input type="checkbox" id="usemirror" name="rproxy" value="rproxy" checked>
+			<label for="usemirror">use reverse proxy (only works without using mirror, might fix the issues in russia)</label><br>
         	<button id="submit">update</button>
         	<script>
   				const s = document.getElementById('submit');
 				const siduse = document.getElementById('usesid');
 				const mir = document.getElementById('usemirror');
+				const rp = document.getElementById('rproxy');
 				const sids = document.querySelectorAll('.sid');
+				mir.addEventListener('change', function() {
+					if (this.checked) {
+					    rp.disabled = true;
+					  } else {
+					    rp.disabled = false;
+					  }
+				});
 				siduse.addEventListener('change', function() {
 					if (this.checked) {
 					    sids.forEach(s => {
@@ -64,6 +74,9 @@
 						let dom = 'muserlogiccpu.pythonanywhere.com';
 						if (mir.checked) {
 							dom = 'tw-svv6.onrender.com';
+						}
+						if (rp.checked) {
+							dom = 'test.developmentmuser.workers.dev';
 						}
 						const r = await fetch(`https://${dom}/update${u}`, {
 							method: 'POST',
