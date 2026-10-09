@@ -9,12 +9,20 @@
     <body>
         <h1>decoder</h1>
         <p>to decode, go to the debug menu (first turn it on with /m l) then copy the value data and paste it here.</p>
+        <p>this is obviously in a very huge beta!1!!!1!11!<br>
+        i hereby allow intens to skid whatever shit this bs has into his goated intensblapi</p>
         <p>select a block</p>
         <select name="type" id="type">
             <option value="speaker" selected>speaker</option>
             <option value="legacykeypad">_legacy keypad</option>
             <option value="keypad">keypad</option>
             <option value="http">http transmitter (useless)</option>
+            <option value="pdetector">player detector</option>
+            <option value="lpdetector">_legacy player detector</option>
+            <option value="kmodule">kill module</option>
+            <option value="lkmodule">_legacy kill module</option>
+            <option value="8eeprom">8 bit eeprom (somehow working)</option>
+            <option value="16eeprom">16 bit eeprom (somehow working)</option>
         </select>
         <br>
         <label for="data">data to decode</label><br>
@@ -45,16 +53,14 @@ function pc(str, d, c) {
       p += 1;
       continue;
     }
-    let C = str.charCodeAt(p);
-    let l = NaN;
-    if (C >= 48 && C <= 57) l = C - 48;
-    else if (C >= 97 && C <= 106) l = C - 87;
-    if (isNaN(l)) {
+    let B = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@$%?&<()";
+    let C = B.indexOf(str[p]);
+    if (C === -1) {
       r.push(d[i]);
       p += 1; 
       continue; 
     }
-    let L = l + 1;
+    let L = C + 1;
     let v = p + 1;
     let V = v + L;
     if (V > str.length) {
@@ -131,6 +137,160 @@ let dv = ["0", "0.1", "", ""];
 let a = pc(u, dv, 4);
 let g = a[0] !== "0" ? 'ON' : 'OFF';
 o.innerHTML = "<b>GET Requests: </b>" + g + "<br><b>GET Interval (seconds): </b>" + a[1] + "<br><b>Headers: </b>" + a[2] + "<br><b>Url: </b>" + a[3];
+} else if (s.value === "pdetector") { 
+let na = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$\%?&<>()+_*{}[]~`'\"|"; // base75
+function b75(str) {
+  function dec(s) {
+    if (!s) return 0;
+    let t = s.trim();
+    let ine = t.startsWith('-');
+    if (ine) t = t.slice(1);
+    let [ip, fp] = t.split('\x02');
+    let T = 0;
+    if (ip) {
+      let p = 0;
+      for (let c of [...ip].reverse()) {
+        let D = na.indexOf(c);
+        if (D === -1) return 0;
+        T += D * (75 ** p);
+        p += 1;
+      }
+    }
+    if (fp) {
+      let fd = "";
+      for (let c of fp) {
+        let D = na.indexOf(c);
+        if (D === -1) return 0;
+        fd += D;
+      }
+      if (fd) {
+        T += Number("0." + fd);
+      }
+    }
+    return ine ? -T : T;
+  }
+  let [a, b, c] = str.split(',', 3);
+  let da = dec(a);
+  let db = dec(b);
+  let dc = dec(c);
+  return [String(da), String(db), String(dc)];
+}
+let dv = ["0", "@perm>=2", "p,p,p", "1","a,a,a","a,a,a"];
+let a = pc(u, dv, 6);
+let dsi = b75(a[2]);
+let sor = b75(a[4]);
+let sof = b75(a[5]);
+let g = a[0] !== "0" ? 'ON' : 'OFF';
+let dsh = a[3] === "1" ? "Sphere" : (a[3] === "2" ? "Box" : (a[3] === "3" ? "Cylinder" : (a[3] === "4" ? "Wedge" : "Pyramid")));
+o.innerHTML = "<b>Show Detection Boundaries: </b>" + g + "<br><b>Activation Selector: </b>" + a[1] + "<br><b>Detection Size in Blocks: </b>" + dsi[0] + ", " + dsi[1] + ", " + dsi[2] + "<br><b>Detection Shape: </b>" + dsh + "<br><b>Shape Orientation (degrees): </b>" + sor[0] + ", " + sor[1] + ", " + sor[2] + "<br><b>Shape Offset in Blocks: </b>" + sof[0] + ", " + sof[1] + ", " + sof[2];
+} else if (s.value === "lpdetector") { 
+let dv = ["0", "2", "13.33"];
+let a = pc(u, dv, 3);
+let g = a[0] !== "0" ? 'ON' : 'OFF';
+o.innerHTML = "<b>Show Range: </b>" + g + "<br><b>Activation Permission: </b>" + a[1] + "<br><b>Range: </b>" + a[2];
+} else if (s.value === "kmodule") { 
+let na = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$\%?&<>()+_*{}[]~`'\"|"; // base75
+function b75(str) {
+  function dec(s) {
+    if (!s) return 0;
+    let t = s.trim();
+    let ine = t.startsWith('-');
+    if (ine) t = t.slice(1);
+    let [ip, fp] = t.split('\x02');
+    let T = 0;
+    if (ip) {
+      let p = 0;
+      for (let c of [...ip].reverse()) {
+        let D = na.indexOf(c);
+        if (D === -1) return 0;
+        T += D * (75 ** p);
+        p += 1;
+      }
+    }
+    if (fp) {
+      let fd = "";
+      for (let c of fp) {
+        let D = na.indexOf(c);
+        if (D === -1) return 0;
+        fd += D;
+      }
+      if (fd) {
+        T += Number("0." + fd);
+      }
+    }
+    return ine ? -T : T;
+  }
+  let [a, b, c] = str.split(',', 3);
+  let da = dec(a);
+  let db = dec(b);
+  let dc = dec(c);
+  return [String(da), String(db), String(dc)];
+}
+let dv = ["0", "0", "@perm>=2", "p,p,p", "1","a,a,a","a,a,a"];
+let a = pc(u, dv, 7);
+let dsi = b75(a[3]);
+let sor = b75(a[5]);
+let sof = b75(a[6]);
+let g = a[0] !== "0" ? 'ON' : 'OFF';
+let h = a[1] !== "0" ? 'ON' : 'OFF';
+let dsh = a[4] === "1" ? "Sphere" : (a[4] === "2" ? "Box" : (a[4] === "3" ? "Cylinder" : (a[4] === "4" ? "Wedge" : "Pyramid")));
+o.innerHTML = "<b>Show Detection Boundaries: </b>" + g + "<br><b>Kill When Touched: </b>" + h + "<br><b>Damages: </b>" + a[2] + "<br><b>Detection Size in Blocks: </b>" + dsi[0] + ", " + dsi[1] + ", " + dsi[2] + "<br><b>Detection Shape: </b>" + dsh + "<br><b>Shape Orientation (degrees): </b>" + sor[0] + ", " + sor[1] + ", " + sor[2] + "<br><b>Shape Offset in Blocks: </b>" + sof[0] + ", " + sof[1] + ", " + sof[2];
+} else if (s.value === "lkmodule") { 
+let dv = ["0", "25", "13.33"];
+let a = pc(u, dv, 3);
+let g = a[0] !== "0" ? 'ON' : 'OFF';
+o.innerHTML = "<b>Show Range: </b>" + g + "<br><b>Damages: </b>" + a[1] + "<br><b>Range: </b>" + a[2];
+  // EEPROM requires a very very specific setup to encode everything
+  // it stores in chunks that are different from the chunks in everything else
+  // here's the structure.
+  // *Address in 2 chars**Value in 2 chars*
+  // and no separator.
+  // seems like the address and value are encoded within the same algorihm
+  // After minutes of reverse engineering i became onto something (aka. i decoded the algorithm)
+  // seems like the algorithm is: - make the number into binary then reverse it then convert to base 10 then encode to base 71
+  // to decode it, we need to: decrypt base 71, decode the base 10 and then reverse the binary string
+} else if (s.value === "8eeprom") { 
+
+  let b = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@\$%?&<()";
+  function b71(id) {
+    let nid = id.trim();
+    let d = 0n; let p = 0n;
+    for (let c of [...nid].reverse()) {
+      let D = b.indexOf(c);
+      if (D === -1) return "0";
+      d += BigInt(D) * (71n ** p); p += 1n;
+    }
+    return String(d);
+  }
+  o.innerHTML = "";
+  for (let i = 0; i < u.length; i += 4) {
+    let a = u.substring(i, i + 2);
+    let v = u.substring(i + 2, i + 4);
+    let ad = Number(b71(a)).toString(2).padStart(8, '0').split('').reverse().join('');
+    let vd = Number(b71(v)).toString(2).padStart(8, '0').split('').reverse().join('');
+    o.innerHTML += "<b>address " + parseInt(ad) + ": </b>" + parseInt(vd) + "<br>";
+  }
+} else if (s.value === "16eeprom") { 
+
+  let b = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@\$%?&<()";
+  function b71(id) {
+    let nid = id.trim();
+    let d = 0n; let p = 0n;
+    for (let c of [...nid].reverse()) {
+      let D = b.indexOf(c);
+      if (D === -1) return "0";
+      d += BigInt(D) * (71n ** p); p += 1n;
+    }
+    return String(d);
+  }
+  o.innerHTML = "";
+  for (let i = 0; i < u.length; i += 6) {
+    let a = u.substring(i, i + 3);
+    let v = u.substring(i + 3, i + 6);
+    let ad = Number(b71(a)).toString(2).padStart(16, '0').split('').reverse().join('');
+    let vd = Number(b71(v)).toString(2).padStart(16, '0').split('').reverse().join('');
+    o.innerHTML += "<b>address " + parseInt(ad) + ": </b>" + parseInt(vd) + "<br>";
+  }
 } else {
   o.innerHTML = "invalid choice"
 }
