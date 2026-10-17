@@ -1,0 +1,322 @@
+	<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>save tool</title>
+		<link rel="stylesheet" href="css.css" />
+    </head>
+    <body>
+        <h1>save tool</h1>
+        <details>
+<summary>
+save decoder
+</summary>
+<h2>save decoder</h2>
+<label for="data">save to decode</label><br>
+        <input type="text" id="data" name="data"><br>
+        <button id="decode">decode</button>
+        <div id="output">
+            <span>output</span>
+            <pre><code id="code"></code></pre>
+        </div>
+        </details>
+        <br>
+        <details>
+<summary>
+save maker
+</summary>
+
+        </details>
+        <script>
+        const t = [
+  { "BlockID": "A", "BlockName": "TorchWATT_Down" },
+  { "BlockID": "B", "BlockName": "SignWATT_Down" },
+  { "BlockID": "C", "BlockName": "SignWATT" },
+  { "BlockID": "D", "BlockName": "TorchWATT" },
+  { "BlockID": "E", "BlockName": "Day Controller" },
+  { "BlockID": "F", "BlockName": "_Legacy Kill Module" },
+  { "BlockID": "G", "BlockName": "Block" },
+  { "BlockID": "H", "BlockName": "Stair" },
+  { "BlockID": "I", "BlockName": "Ladder" },
+  { "BlockID": "J", "BlockName": "Torch" },
+  { "BlockID": "K", "BlockName": "Invisible Block" },
+  { "BlockID": "L", "BlockName": "Slab" },
+  { "BlockID": "M", "BlockName": "Inner Stair" },
+  { "BlockID": "N", "BlockName": "Outer Stair" },
+  { "BlockID": "O", "BlockName": "Color Neon Light 2" },
+  { "BlockID": "P", "BlockName": "Full Subtractor" },
+  { "BlockID": "Q", "BlockName": "Plate" },
+  { "BlockID": "R", "BlockName": "Piston" },
+  { "BlockID": "S", "BlockName": "4 Bit Register" },
+  { "BlockID": "T", "BlockName": "Dip Switches" },
+  { "BlockID": "U", "BlockName": "8x8 RGB2 Panel" },
+  { "BlockID": "V", "BlockName": "Interval Calculator" },
+  { "BlockID": "W", "BlockName": "8 Bit Splitter" },
+  { "BlockID": "X", "BlockName": "EEPROM" },
+  { "BlockID": "Y", "BlockName": "LED" },
+  { "BlockID": "Z", "BlockName": "8 Bit AND Gate" },
+  { "BlockID": "a", "BlockName": "Barrier Block" },
+  { "BlockID": "b", "BlockName": "NAND Gate" },
+  { "BlockID": "c", "BlockName": "NOR Gate" },
+  { "BlockID": "d", "BlockName": "NOT Gate" },
+  { "BlockID": "e", "BlockName": "OR Gate" },
+  { "BlockID": "f", "BlockName": "Splitter" },
+  { "BlockID": "g", "BlockName": "XNOR Gate" },
+  { "BlockID": "h", "BlockName": "Counter" },
+  { "BlockID": "i", "BlockName": "8 Bit Shifter Counter" },
+  { "BlockID": "j", "BlockName": "Number Counter" },
+  { "BlockID": "k", "BlockName": "Color No Light" },
+  { "BlockID": "l", "BlockName": "Gated SR Latch" },
+  { "BlockID": "m", "BlockName": "Full Adder" },
+  { "BlockID": "n", "BlockName": "SR Latch" },
+  { "BlockID": "o", "BlockName": "Toggle Output" },
+  { "BlockID": "p", "BlockName": "Delay" },
+  { "BlockID": "q", "BlockName": "Timer" },
+  { "BlockID": "r", "BlockName": "Wifi" },
+  { "BlockID": "s", "BlockName": "Button" },
+  { "BlockID": "t", "BlockName": "Sign" },
+  { "BlockID": "u", "BlockName": "Lever" },
+  { "BlockID": "v", "BlockName": "Toggle Button" },
+  { "BlockID": "w", "BlockName": "Instant Button" },
+  { "BlockID": "x", "BlockName": "HEX Color Display" },
+  { "BlockID": "y", "BlockName": "HEX Squared Color Display" },
+  { "BlockID": "z", "BlockName": "RGB Light" },
+  { "BlockID": "`", "BlockName": "8 Bit NOR Gate" },
+  { "BlockID": "1", "BlockName": "AND Gate" },
+  { "BlockID": "2", "BlockName": "XOR Gate" },
+  { "BlockID": "3", "BlockName": "Randomizer" },
+  { "BlockID": "4", "BlockName": "HEX LCD Display" },
+  { "BlockID": "5", "BlockName": "HEX Pixel Color Display" },
+  { "BlockID": "6", "BlockName": "Barrier" },
+  { "BlockID": "7", "BlockName": "Read Output" },
+  { "BlockID": "8", "BlockName": "Color Neon Light" },
+  { "BlockID": "9", "BlockName": "Green Screen" },
+  { "BlockID": "0", "BlockName": "Color Light" },
+  { "BlockID": "!", "BlockName": "8 Bit OR Gate" },
+  { "BlockID": "@", "BlockName": "8 Bit XOR Gate" },
+  { "BlockID": "&", "BlockName": "8 Bit NAND Gate" },
+  { "BlockID": "*", "BlockName": "8 Bit XNOR Gate" },
+  { "BlockID": "(", "BlockName": "Text Button" },
+  { "BlockID": ")", "BlockName": "Command Block" },
+  { "BlockID": "-", "BlockName": "2 Bit Multiplier" },
+  { "BlockID": "_", "BlockName": "RGB2 Light Panel" },
+  { "BlockID": "+", "BlockName": "Door" },
+  { "BlockID": "=", "BlockName": "Electric Door" },
+  { "BlockID": "[", "BlockName": "Sticky Piston" },
+  { "BlockID": "{", "BlockName": "Empty Block" },
+  { "BlockID": "]", "BlockName": "TNT" },
+  { "BlockID": "}", "BlockName": "RGB2 Light" },
+  { "BlockID": "|", "BlockName": "Block Placer" },
+  { "BlockID": ":", "BlockName": "Pane" },
+  { "BlockID": "'", "BlockName": "Player Detector" },
+  { "BlockID": "\"", "BlockName": "Kill Module" },
+  { "BlockID": ",", "BlockName": "Chair" },
+  { "BlockID": "<", "BlockName": "HEX Color Display 2" },
+  { "BlockID": ".", "BlockName": "4 Bit Shifter Counter" },
+  { "BlockID": ">", "BlockName": "Text Panel" },
+  { "BlockID": "/", "BlockName": "Corner Pane" },
+  { "BlockID": "?", "BlockName": "Erreur" },
+  { "BlockID": "#A", "BlockName": "Complex Counter" },
+  { "BlockID": "#B", "BlockName": "NUCLEAR TNT" },
+  { "BlockID": "#C", "BlockName": "Phosphor Light" },
+  { "BlockID": "#D", "BlockName": "Trap Door" },
+  { "BlockID": "#E", "BlockName": "Electric Trap Door" },
+  { "BlockID": "#F", "BlockName": "RGB Neon Light" },
+  { "BlockID": "#G", "BlockName": "RGB2 Neon Light" },
+  { "BlockID": "#H", "BlockName": "Inverted Double Dabble Chip" },
+  { "BlockID": "#I", "BlockName": "Triangular Stair" },
+  { "BlockID": "#K", "BlockName": "Sticky Block" },
+  { "BlockID": "#L", "BlockName": "8 Bit Multiplier" },
+  { "BlockID": "#M", "BlockName": "16 Bit Multiplier" },
+  { "BlockID": "#N", "BlockName": "8 Bit Divider" },
+  { "BlockID": "#O", "BlockName": "16 Bit Divider" },
+  { "BlockID": "#P", "BlockName": "Obsidian" },
+  { "BlockID": "#Q", "BlockName": "Air Block" },
+  { "BlockID": "#R", "BlockName": "_Legacy Player Detector" },
+  { "BlockID": "#S", "BlockName": "Quick NOT" },
+  { "BlockID": "#T", "BlockName": "Reinforced Block" },
+  { "BlockID": "#U", "BlockName": "Clay Block" },
+  { "BlockID": "#V", "BlockName": "Color Detector" },
+  { "BlockID": "#W", "BlockName": "8 Bit Adder" },
+  { "BlockID": "#X", "BlockName": "16 Bit Adder" },
+  { "BlockID": "#Y", "BlockName": "D Flip" },
+  { "BlockID": "#Z", "BlockName": "Mini HEX Color Display" },
+  { "BlockID": "#a", "BlockName": "D Flip Flop" },
+  { "BlockID": "#b", "BlockName": "Beam 1x4" },
+  { "BlockID": "#c", "BlockName": "Beam 1x7" },
+  { "BlockID": "#d", "BlockName": "16 Bit EEPROM" },
+  { "BlockID": "#e", "BlockName": "Double Dabble Chip" },
+  { "BlockID": "#f", "BlockName": "Laser" },
+  { "BlockID": "#g", "BlockName": "Laser Detector" },
+  { "BlockID": "#h", "BlockName": "Transmitter" },
+  { "BlockID": "#i", "BlockName": "D Latch" },
+  { "BlockID": "#j", "BlockName": "T Flip Flop" },
+  { "BlockID": "#k", "BlockName": "4 Sides Pole 2" },
+  { "BlockID": "#l", "BlockName": "Color Light Panel" },
+  { "BlockID": "#m", "BlockName": "Corner Pole" },
+  { "BlockID": "#n", "BlockName": "Pole" },
+  { "BlockID": "#o", "BlockName": "T Pole" },
+  { "BlockID": "#p", "BlockName": "3 Sides Pole" },
+  { "BlockID": "#q", "BlockName": "RGB Light Panel" },
+  { "BlockID": "#r", "BlockName": "Buzzer" },
+  { "BlockID": "#s", "BlockName": "Spawn" },
+  { "BlockID": "#t", "BlockName": "EMERGENCY" },
+  { "BlockID": "#u", "BlockName": "Speaker" },
+  { "BlockID": "#v", "BlockName": "Teleport Module A" },
+  { "BlockID": "#w", "BlockName": "Teleport Module B" },
+  { "BlockID": "#x", "BlockName": "Pressure Plate" },
+  { "BlockID": "#y", "BlockName": "Don't Press Button" },
+  { "BlockID": "#z", "BlockName": "Plate Button" },
+  { "BlockID": "#`", "BlockName": "Loki Spawner" },
+  { "BlockID": "#1", "BlockName": "4 Sides Pole" },
+  { "BlockID": "#2", "BlockName": "5 Sides Pole" },
+  { "BlockID": "#3", "BlockName": "6 Sides Pole" },
+  { "BlockID": "#4", "BlockName": "4 LEDs" },
+  { "BlockID": "#5", "BlockName": "TNT Activator" },
+  { "BlockID": "#6", "BlockName": "4 Bit Comparator" },
+  { "BlockID": "#7", "BlockName": "8 Bit Register" },
+  { "BlockID": "#8", "BlockName": "16x16 RGB2 Panel" },
+  { "BlockID": "#9", "BlockName": "4 RGB Light Panels" },
+  { "BlockID": "#0", "BlockName": "Buffer" },
+  { "BlockID": "#!", "BlockName": "HTTP Transmitter" },
+  { "BlockID": "#@", "BlockName": "_Legacy Keypad" },
+  { "BlockID": "#\$", "BlockName": "8 Bit 8:1 Mux" },
+  { "BlockID": "#^", "BlockName": "Illegal Piston" },
+  { "BlockID": "#&", "BlockName": "Keypad" },
+  { "BlockID": "#*", "BlockName": "1 Bit 1:16 Demux" },
+  { "BlockID": "#(", "BlockName": "Slab Chair" },
+  { "BlockID": "#)", "BlockName": "Firework Module" },
+  { "BlockID": "#-", "BlockName": "Solid Chair" },
+  { "BlockID": "#_", "BlockName": "8 Bit 2:1 Mux" },
+  { "BlockID": "#=", "BlockName": "1 Bit 1:8 Demux" },
+  { "BlockID": "#+", "BlockName": "4 Bit 4:1 Mux" },
+  { "BlockID": "#[", "BlockName": "16 Bit Shifter Counter" },
+  { "BlockID": "#{", "BlockName": "Sign 1x2WATT" },
+  { "BlockID": "#]", "BlockName": "Sign 1x2" },
+  { "BlockID": "#}", "BlockName": "Sign 1x2WATT_Down" },
+  { "BlockID": "#|", "BlockName": "Stair Chair" },
+  { "BlockID": "#:", "BlockName": "Illegal Sticky Piston" },
+  { "BlockID": "#,", "BlockName": "4 Bit Wifi" },
+  { "BlockID": "#<", "BlockName": "4 Bit 16:1 Mux" },
+  { "BlockID": "#/", "BlockName": "Perfect TNT" },
+  { "BlockID": "# ", "BlockName": "Cake" },
+  { "BlockID": "%b", "BlockName": "8 Bit Synchronous Randomizer" },
+  { "BlockID": "%c", "BlockName": "Precise Synchronous Randomizer" },
+  { "BlockID": "%d", "BlockName": "Complex Number Counter" },
+  { "BlockID": "%f", "BlockName": "Slab Spawn" },
+  { "BlockID": "%g", "BlockName": "Checkpoint" },
+  { "BlockID": "%h", "BlockName": "Slab Checkpoint" },
+  { "BlockID": "%i", "BlockName": "Spotlight" },
+  { "BlockID": "%j", "BlockName": "RGB2 Phosphor Light" },
+  { "BlockID": "%k", "BlockName": "8 Bit Shift Register" },
+  { "BlockID": "%l", "BlockName": "Synchronous Randomizer" },
+  { "BlockID": "%m", "BlockName": "Precise Randomizer" },
+  { "BlockID": "%1", "BlockName": "Loaded Gate" },
+  { "BlockID": "%2", "BlockName": "Light Button" },
+  { "BlockID": "%0", "BlockName": "Controllable Color Display" },
+  { "BlockID": "\x02", "BlockName": "Beam 1x2" },
+  { "BlockID": "\x03", "BlockName": "Beam 1x3" },
+  { "BlockID": "\x04", "BlockName": "Beam 1x5" },
+  { "BlockID": "\x05", "BlockName": "Beam 1x6" },
+  { "BlockID": "\x06", "BlockName": "Beam 1x8" }
+];
+const ro = [
+{"rotation":"A","values":[0,0,0]},
+{"rotation":"E","values":[270,0,0]},
+{"rotation":"I","values":[180,0,0]},
+{"rotation":"M","values":[90,0,0]},
+{"rotation":"B","values":[0,270,0]},
+{"rotation":"F","values":[270,270,0]},
+{"rotation":"J","values":[180,270,0]},
+{"rotation":"N","values":[90,270,0]},
+{"rotation":"o","values":[0,180,0]},
+{"rotation":"s","values":[270,180,0]},
+{"rotation":"g","values":[180,180,0]},
+{"rotation":"k","values":[90,180,0]},
+{"rotation":"D","values":[0,90,0]},
+{"rotation":"H","values":[270,90,0]},
+{"rotation":"L","values":[180,90,0]},
+{"rotation":"P","values":[90,90,0]},
+{"rotation":"Q","values":[0,0,270]},
+{"rotation":"U","values":[270,0,270]},
+{"rotation":"Y","values":[180,0,270]},
+{"rotation":"c","values":[90,0,270]},
+{"rotation":"4","values":[0,180,270]},
+{"rotation":"8","values":[270,180,270]},
+{"rotation":"w","values":[180,180,270]},
+{"rotation":"0","values":[90,180,270]}
+]
+const ma = [
+{"mat":"1","name":"Default"},
+{"mat":"2","name":"Glass"},
+{"mat":"3","name":"Diamond Plate"},
+{"mat":"4","name":"Fabric"},
+{"mat":"5","name":"Grass"},
+{"mat":"6","name":"Ice"},
+{"mat":"7","name":"Sand"},
+{"mat":"8","name":"Wood"},
+{"mat":"9","name":"Wooden Planks"},
+{"mat":"A","name":"Foil"},
+{"mat":"b","name":"Metal"},
+{"mat":"c","name":"Brick"},
+{"mat":"d","name":"Concrete"},
+{"mat":"f","name":"Marble"},
+{"mat":"g","name":"Granite"},
+{"mat":"h","name":"Slate"},
+{"mat":"i","name":"Corroded Metal"},
+{"mat":"j","name":"Force Field"}
+]
+const e = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789#$";
+function de(s) {
+    let n = 0;
+    for (let i = 3; i >= 0; i--) {
+        let c = s[i];
+        let d = e.indexOf(c);
+        n = (n * 64) + d;
+    }
+    let a = n % 256;
+    n = Math.floor(n / 256);
+    let b = n % 256;
+    let c = Math.floor(n / 256);
+    return { a, b, c };
+}
+        let d = document.getElementById('decode');
+        let o = document.getElementById('code');
+            let D = document.getElementById('data');
+	        d.addEventListener('click', async () => {
+	            o.innerHTML = "";
+	            let u = D.value;
+	            let b = u.split(";");
+	            for (let B of b) {
+	            let r = t?.find(T => B.startsWith(T.BlockID));
+	            o.innerHTML += "<b>Name: </b>" + r.BlockName + "<br>";
+	            B = B.slice(r.BlockID.length);
+	            // after that, we need to cut the first 4 chars, its the pos
+	            p = B.slice(0, 4);
+	            ga = de(p);
+	            o.innerHTML += "<b>Pos: </b>" + ga.a + ", " + ga.b + ", " + ga.c + "<br>";
+	            // either rotation remaining or more bs.
+	            ra = B.slice(4, 5);
+	            let rot = ro?.find(T => ra == T.rotation).values
+	            o.innerHTML += "<b>Rotation: </b>" + rot[0] + ", " + rot[1] + ", " + rot[2]  + "<br>";
+	            // read more chars
+	            let mate = B.slice(9,10) === "" ? "1" : B.slice(9,10);
+	            let mat = ma?.find(T => mate == T.mat).name;
+	            if(mate === "") {
+	            	mat = "Default";
+	           	}
+	           	col = B.slice(5, 9);
+	            if(col === "" || col.length !== 4){
+	            	co = {a:255,b:255,c:255};
+	           	}
+	            o.innerHTML += "<b>Color: </b>" + co.a + ", " + co.b + ", " + co.c + "<br>";
+	            o.innerHTML += "<b>Material: </b>" + mat + "<br>";
+	            let text = B.includes("/") ? B.slice(B.indexOf("/")+1) : "";
+	            if(B.includes("/")) o.innerHTML += "<b>Value: </b>" + text + "<br>";
+	            o.innerHTML += "<hr>";
+	            }
+            });
+        </script>
+    </body>
+</html>

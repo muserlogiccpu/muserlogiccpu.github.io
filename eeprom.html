@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>eeprom tool</title>
+		<link rel="stylesheet" href="css.css" />
+    </head>
+    <body>
+<h1>eeprom encoder</h1>
+<p>i know yall waited for ts so i made it!</p>
+<p>select the address, and the value to add it to this output!</p>
+<input type="checkbox" id="16" name="16" value="usemirror">
+			<label for="16">16-bit eeprom</label><br>
+<label for="addr">address</label><br>
+<input type="number" id="addr" name="addr" value="0" min="0" oninput="this.value = Math.abs(this.value) % 65535" max="65535"><br>
+<label for="val">value</label><br>
+<input type="number" id="val" name="val" value="0" min="0" oninput="this.value = Math.abs(this.value) % 65535" max="65535"><br>
+<button id="add">add</button>
+<button id="reset">reset</button>
+<div id="output">
+            <span>output</span>
+            <pre><code id="code"></code></pre>
+        </div>
+        <button id="encode">encode</button>
+        <div id="output">
+            <span>output</span>
+            <pre><code id="code2"></code></pre>
+        </div>
+        <script>
+        let vale=[]
+        let a = document.getElementById('add');
+        let n = document.getElementById('encode');
+        let r = document.getElementById('reset');
+        let o = document.getElementById('code');
+        let o2 = document.getElementById('code2');
+        let e = document.getElementById('addr');
+        let E = document.getElementById('val');
+        let i16 = document.getElementById('16');
+        let b = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@\$%?&<()";
+        function b71(e) {
+			let n = BigInt(e);
+			if (n === 0n) return b[0];
+			if (n < 0n) return "0"; 
+			let r = "";
+  			while (n > 0n) {
+			    let R = n % 71n;
+			    r = b[Number(R)] + r;
+			    n = n / 71n;
+			  }
+  			return r;
+}
+        a.addEventListener('click', async () => {
+	            let A = e.value;
+				let v = E.value;
+				vale.push({"addr":A,"val":v});
+				o.innerHTML += `<b>Address ${A}: </b>: ${v}<br>`;
+        });
+        r.addEventListener('click', async () => {
+	            vale = [];
+	            o.innerHTML = "";
+        });
+        n.addEventListener('click', async () => {
+        let u=8;
+        let uu=2
+        if (i16.checked) {
+        u=16;
+        uu=3;
+        }
+        o2.innerHTML = "";
+        for (const cell of vale) {
+        let addr = Number(cell.addr).toString(2).padStart(u, '0').split('').reverse().join('');
+        let val = Number(cell.val).toString(2).padStart(u, '0').split('').reverse().join('');
+        console.log(val)
+        o2.innerHTML += b71(parseInt(addr,2)).padStart(uu, '0') + b71(parseInt(val,2)).padStart(uu, '0');
+        }
+        });
+        </script>
+</body>
+</html>
