@@ -52,6 +52,10 @@ input[type="checkbox"]:checked {
   background-color: #f00;
   border-color: #222;
 }
+input[type="checkbox"]:disabled {
+  background-color: #000;
+  border-color: #222;
+}
 input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
@@ -69,4 +73,8 @@ input[type="checkbox"]:hover {
 body *:focus-visible {
   outline: 2px solid #a00;
   outline-offset: 2px;
+}
+a{
+color:#a22;
+text-decoration: underline dotted;
 }
